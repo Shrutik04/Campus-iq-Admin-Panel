@@ -17,7 +17,7 @@ export const Card = React.forwardRef(({
       ref={ref}
       className={clsx(
         'bg-white rounded-xl shadow-sm border border-gray-100 p-6',
-        hover && 'transition-all duration-200 hover:shadow-md hover:border-gray-200',
+        hover && 'transition-all duration-200 hover:shadow-md hover:border-gray-200 transform hover:-translate-y-1',
         className
       )}
       {...props}

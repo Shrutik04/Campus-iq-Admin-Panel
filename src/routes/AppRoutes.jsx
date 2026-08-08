@@ -7,6 +7,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import AcademicYear from '../pages/AcademicYear/AcademicYear';
+import Master from '../pages/Master/Master';
+import MasterData from '../pages/Master/MasterData';
 import Department from '../pages/Department/Department';
 import ClassPage from '../pages/Class/Class';
 import Section from '../pages/Section/Section';
@@ -27,6 +29,8 @@ export const AppRoutes = () => {
       <Route element={<DashboardLayout />}>
         <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
         <Route path={ROUTES.ACADEMIC_YEAR} element={<AcademicYear />} />
+        <Route path={ROUTES.MASTER} element={<Master />} />
+        <Route path={ROUTES.MASTER_DATA} element={<MasterData />} />
         <Route path={ROUTES.DEPARTMENT} element={<Department />} />
         <Route path={ROUTES.CLASS} element={<ClassPage />} />
         <Route path={ROUTES.SECTION} element={<Section />} />

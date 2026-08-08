@@ -1,5 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 6 },
+};
 
 export const DataTable = ({ columns = [], data = [], className, noDataMessage = 'No records found.' }) => {
   return (
@@ -25,15 +32,26 @@ export const DataTable = ({ columns = [], data = [], className, noDataMessage = 
               </td>
             </tr>
           ) : (
-            data.map((row, rowIndex) => (
-              <tr key={row.id || rowIndex} className="hover:bg-gray-50">
-                {columns.map((column, columnIndex) => (
-                  <td key={`${row.id || rowIndex}-${columnIndex}`} className="px-4 py-4 whitespace-nowrap text-sm text-gray-700">
-                    {column.render ? column.render(row) : row[column.accessor] ?? '—'}
-                  </td>
-                ))}
-              </tr>
-            ))
+            <AnimatePresence>
+              {data.map((row, rowIndex) => (
+                <motion.tr
+                  key={row.id || rowIndex}
+                  className="hover:bg-gray-50"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={rowVariants}
+                  transition={{ duration: 0.18 }}
+                  whileHover={{ scale: 1.01 }}
+                >
+                  {columns.map((column, columnIndex) => (
+                    <td key={`${row.id || rowIndex}-${columnIndex}`} className="px-4 py-4 whitespace-nowrap text-sm text-gray-700">
+                      {column.render ? column.render(row) : row[column.accessor] ?? '—'}
+                    </td>
+                  ))}
+                </motion.tr>
+              ))}
+            </AnimatePresence>
           )}
         </tbody>
       </table>
